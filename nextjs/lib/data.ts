@@ -4,6 +4,7 @@
 export type Zone = 'lid' | 'inside' | 'gear';
 
 export interface Spot {
+  id: string;
   n: number;
   zone: Zone;
   label: string;
@@ -11,7 +12,7 @@ export interface Spot {
   price: number; // EUR, current top bid (or starting price if available)
   startingBid: number;
   bids: number;
-  heldBy: string | null;
+  heldBy: string | null; // now highest_bidder_id (uuid) when live; demo string in static mode
 }
 
 export const FOUNDER = { name: 'Manish Bhaktisagar' };
@@ -32,26 +33,26 @@ export const MACHINE = {
 export const GOAL = { raisedEur: 8282, percent: 327 };
 
 export const SPOTS: Spot[] = [
-  { n: 1, zone: 'lid', label: 'Top left banner', size: 'L 9.5×5.5 cm', price: 1300, startingBid: 400, bids: 7, heldBy: 'Demo Brand A' },
-  { n: 2, zone: 'lid', label: 'Marquee — above logo', size: 'L 9.5×5.5 cm', price: 1715, startingBid: 600, bids: 3, heldBy: 'Demo Brand B' },
-  { n: 3, zone: 'lid', label: 'Top right banner', size: 'L 9.5×5.5 cm', price: 1010, startingBid: 400, bids: 19, heldBy: 'Demo Brand C' },
-  { n: 4, zone: 'lid', label: 'Middle left', size: 'S 4.5×4.5 cm', price: 375, startingBid: 125, bids: 17, heldBy: 'Demo Brand D' },
-  { n: 5, zone: 'lid', label: 'Inner left — beside logo', size: 'S 4.5×4.5 cm', price: 410, startingBid: 150, bids: 12, heldBy: 'Demo Brand E' },
-  { n: 6, zone: 'lid', label: 'Inner right — beside logo', size: 'S 4.5×4.5 cm', price: 387, startingBid: 150, bids: 13, heldBy: 'Demo Brand F' },
-  { n: 7, zone: 'lid', label: 'Middle right', size: 'S 4.5×4.5 cm', price: 370, startingBid: 125, bids: 11, heldBy: 'Demo Brand G' },
-  { n: 8, zone: 'lid', label: 'Bottom left strip', size: 'M 9.5×4 cm', price: 676, startingBid: 200, bids: 14, heldBy: 'Demo Brand H' },
-  { n: 9, zone: 'lid', label: 'Bottom center — under logo', size: 'M 9.5×4 cm', price: 820, startingBid: 250, bids: 22, heldBy: 'Demo Brand I' },
-  { n: 10, zone: 'lid', label: 'Bottom right strip', size: 'M 9.5×4 cm', price: 550, startingBid: 200, bids: 16, heldBy: 'Demo Brand J' },
-  { n: 11, zone: 'inside', label: 'Left palm rest — 1', size: 'S 4×4 cm', price: 39, startingBid: 39, bids: 1, heldBy: 'Demo Brand K' },
-  { n: 12, zone: 'inside', label: 'Left palm rest — 2', size: 'S 4×4 cm', price: 59, startingBid: 59, bids: 1, heldBy: 'Demo Brand L' },
-  { n: 13, zone: 'inside', label: 'Left palm rest — 3', size: 'S 4×4 cm', price: 39, startingBid: 39, bids: 1, heldBy: 'Demo Brand M' },
-  { n: 14, zone: 'inside', label: 'Left palm rest — 4', size: 'S 4×4 cm', price: 59, startingBid: 59, bids: 1, heldBy: 'Demo Brand N' },
-  { n: 15, zone: 'inside', label: 'Right palm rest — 1', size: 'S 4×4 cm', price: 76, startingBid: 59, bids: 1, heldBy: 'Demo Brand O' },
-  { n: 16, zone: 'inside', label: 'Right palm rest — 2', size: 'S 4×4 cm', price: 49, startingBid: 39, bids: 2, heldBy: 'Demo Brand P' },
-  { n: 17, zone: 'inside', label: 'Right palm rest — 3', size: 'S 4×4 cm', price: 59, startingBid: 59, bids: 0, heldBy: null },
-  { n: 18, zone: 'inside', label: 'Right palm rest — 4', size: 'S 4×4 cm', price: 39, startingBid: 39, bids: 1, heldBy: 'Demo Brand Q' },
-  { n: 19, zone: 'gear', label: 'Charger + cable', size: 'S 5×5 cm', price: 199, startingBid: 199, bids: 1, heldBy: 'Demo Brand R' },
-  { n: 20, zone: 'gear', label: 'Mouse', size: 'S 4×2.5 cm', price: 110, startingBid: 85, bids: 3, heldBy: 'Demo Brand S' },
+  { id: 'demo-1', n: 1, zone: 'lid', label: 'Top left banner', size: 'L 9.5×5.5 cm', price: 1300, startingBid: 400, bids: 7, heldBy: 'Demo Brand A' },
+  { id: 'demo-2', n: 2, zone: 'lid', label: 'Marquee — above logo', size: 'L 9.5×5.5 cm', price: 1715, startingBid: 600, bids: 3, heldBy: 'Demo Brand B' },
+  { id: 'demo-3', n: 3, zone: 'lid', label: 'Top right banner', size: 'L 9.5×5.5 cm', price: 1010, startingBid: 400, bids: 19, heldBy: 'Demo Brand C' },
+  { id: 'demo-4', n: 4, zone: 'lid', label: 'Middle left', size: 'S 4.5×4.5 cm', price: 375, startingBid: 125, bids: 17, heldBy: 'Demo Brand D' },
+  { id: 'demo-5', n: 5, zone: 'lid', label: 'Inner left — beside logo', size: 'S 4.5×4.5 cm', price: 410, startingBid: 150, bids: 12, heldBy: 'Demo Brand E' },
+  { id: 'demo-6', n: 6, zone: 'lid', label: 'Inner right — beside logo', size: 'S 4.5×4.5 cm', price: 387, startingBid: 150, bids: 13, heldBy: 'Demo Brand F' },
+  { id: 'demo-7', n: 7, zone: 'lid', label: 'Middle right', size: 'S 4.5×4.5 cm', price: 370, startingBid: 125, bids: 11, heldBy: 'Demo Brand G' },
+  { id: 'demo-8', n: 8, zone: 'lid', label: 'Bottom left strip', size: 'M 9.5×4 cm', price: 676, startingBid: 200, bids: 14, heldBy: 'Demo Brand H' },
+  { id: 'demo-9', n: 9, zone: 'lid', label: 'Bottom center — under logo', size: 'M 9.5×4 cm', price: 820, startingBid: 250, bids: 22, heldBy: 'Demo Brand I' },
+  { id: 'demo-10', n: 10, zone: 'lid', label: 'Bottom right strip', size: 'M 9.5×4 cm', price: 550, startingBid: 200, bids: 16, heldBy: 'Demo Brand J' },
+  { id: 'demo-11', n: 11, zone: 'inside', label: 'Left palm rest — 1', size: 'S 4×4 cm', price: 39, startingBid: 39, bids: 1, heldBy: 'Demo Brand K' },
+  { id: 'demo-12', n: 12, zone: 'inside', label: 'Left palm rest — 2', size: 'S 4×4 cm', price: 59, startingBid: 59, bids: 1, heldBy: 'Demo Brand L' },
+  { id: 'demo-13', n: 13, zone: 'inside', label: 'Left palm rest — 3', size: 'S 4×4 cm', price: 39, startingBid: 39, bids: 1, heldBy: 'Demo Brand M' },
+  { id: 'demo-14', n: 14, zone: 'inside', label: 'Left palm rest — 4', size: 'S 4×4 cm', price: 59, startingBid: 59, bids: 1, heldBy: 'Demo Brand N' },
+  { id: 'demo-15', n: 15, zone: 'inside', label: 'Right palm rest — 1', size: 'S 4×4 cm', price: 76, startingBid: 59, bids: 1, heldBy: 'Demo Brand O' },
+  { id: 'demo-16', n: 16, zone: 'inside', label: 'Right palm rest — 2', size: 'S 4×4 cm', price: 49, startingBid: 39, bids: 2, heldBy: 'Demo Brand P' },
+  { id: 'demo-17', n: 17, zone: 'inside', label: 'Right palm rest — 3', size: 'S 4×4 cm', price: 59, startingBid: 59, bids: 0, heldBy: null },
+  { id: 'demo-18', n: 18, zone: 'inside', label: 'Right palm rest — 4', size: 'S 4×4 cm', price: 39, startingBid: 39, bids: 1, heldBy: 'Demo Brand Q' },
+  { id: 'demo-19', n: 19, zone: 'gear', label: 'Charger + cable', size: 'S 5×5 cm', price: 199, startingBid: 199, bids: 1, heldBy: 'Demo Brand R' },
+  { id: 'demo-20', n: 20, zone: 'gear', label: 'Mouse', size: 'S 4×2.5 cm', price: 110, startingBid: 85, bids: 3, heldBy: 'Demo Brand S' },
 ];
 
 export const CORNER = [
