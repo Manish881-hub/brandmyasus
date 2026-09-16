@@ -5,34 +5,93 @@ import { fmt } from '@/lib/format';
 import Visualizer from './Visualizer';
 import Reveal from './Reveal';
 
-export function Hero({ spots, cur, onBid }: { spots: Spot[]; cur: Currency; onBid: (n: number) => void }) {
+export function Hero({
+  spots,
+  cur,
+  onBid,
+}: {
+  spots: Spot[];
+  cur: Currency;
+  onBid: (n: number) => void;
+}) {
   const open = spots.filter((s) => !s.heldBy).length;
   const totalBids = spots.reduce((a, s) => a + s.bids, 0);
   const taken = spots.length - open;
+
   return (
     <>
-      <section className="hero wrap">
-        <div className="hero-copy">
-          <div className="live-row"><span className="live-dot" /><span>Auction · <strong>{open}</strong> spot open from <strong>{fmt(59, cur)}</strong></span></div>
-          <h1>Your brand,<br />on my Asus.</h1>
-          <p className="lede">I’m funding a new Asus laptop by selling its surfaces as sticker spots. Your logo travels to cafés, events, vlogs and build-in-public posts — on the lid, inside, and on the gear.</p>
-          <div className="stats">
-            <div className="stat-big">{fmt(GOAL.raisedEur, cur)} <span className="muted">raised</span></div>
-            <div className="progress"><div className="bar" style={{ width: '100%' }} /></div>
-            <div className="muted small">goal passed · <strong>{GOAL.percent}%</strong> · {totalBids} bids so far</div>
+      <section className="hero wrap" id="spots">
+        <div className="hero-top">
+          <div className="live-row">
+            <span className="live-dot" />
+            <span>
+              Auction · <strong>{open}</strong> spot open from{" "}
+              <strong>{fmt(59, cur)}</strong>
+            </span>
           </div>
-          <div className="hero-ctas">
-            <a href="#spots" className="btn btn-dark btn-large">Get a spot</a>
-            <a href="#how" className="btn btn-ghost btn-large">How it works ›</a>
-          </div>
-          <p className="micro">Tap any numbered spot on the laptop to bid. Lid · Inside · Gear.</p>
         </div>
-        <Visualizer spots={spots} onBid={onBid} />
+
+        <div className="hero-copy">
+          <h1>
+            Your brand,
+            <br />
+            on my Asus.
+          </h1>
+
+          <p className="lede">
+            I’m funding a new Asus laptop by selling its surfaces as sticker
+            spots. Your logo travels to cafés, events, vlogs and
+            build-in-public posts — on the lid, inside, and on the gear.
+          </p>
+
+          <div className="stats">
+            <div className="stat-big">
+              {fmt(GOAL.raisedEur, cur)}{" "}
+              <span className="muted">raised</span>
+            </div>
+
+            <div className="progress">
+              <div
+                className="bar"
+                style={{ width: `${Math.min(GOAL.percent, 100)}%` }}
+              />
+            </div>
+
+            <div className="muted small">
+              goal passed · <strong>{GOAL.percent}%</strong> · {totalBids} bids
+              so far
+            </div>
+          </div>
+
+          <div className="hero-ctas">
+            <a href="#spots" className="btn btn-dark btn-large">
+              Get a spot
+            </a>
+
+            <a href="#how" className="btn btn-ghost btn-large">
+              How it works ›
+            </a>
+          </div>
+
+          <p className="micro">
+            Tap any numbered spot on the laptop to bid. Lid · Inside · Gear.
+          </p>
+        </div>
+
+        <div className="hero-visual">
+          <Visualizer spots={spots} onBid={onBid} />
+        </div>
       </section>
+
       <section className="banner">
         <div className="wrap">
-          <h2>Everyone knows the Asus lid. Put your logo right next to it.</h2>
-          <p className="muted">· {taken} of {spots.length} sticker spots taken</p>
+          <h2>
+            Everyone knows the Asus lid. Put your logo right next to it.
+          </h2>
+
+          <p className="muted">
+            · {taken} of {spots.length} sticker spots taken
+          </p>
         </div>
       </section>
     </>
