@@ -128,8 +128,8 @@ export default function Visualizer({
             <div className="laptop lid-laptop">
               <img
                 className="laptop-photo"
-                src="/laptop-lid.svg"
-                alt="Asus laptop lid"
+                src="/OG-asus.png"
+                alt="Asus laptop lid — OG-asus.png"
               />
 
               {Object.entries(LID_POS).map(([n, position]) =>
