@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Leaderboard — BrandMyAsus</title><link rel="stylesheet" href="styles.css"/><link rel="icon" href="assets/favicon.svg" type="image/svg+xml"/></head>
+<body>
+<header class="site-header"><div class="wrap header-inner">
+<a class="brand" href="index.html"><span class="brand-mark">B</span><span class="brand-text">BrandMy<em>Asus</em></span></a>
+<nav class="main-nav"><a href="index.html#spots">Live auction</a><a href="leaderboard.html">Leaderboard</a><a href="index.html#how">How it works</a><a href="index.html#corner">The corner</a></nav>
+<div class="header-actions">
+<div class="currency" role="group" aria-label="Currency"><button class="cur active" data-cur="EUR">€</button><button class="cur" data-cur="USD">$</button></div>
+<a href="index.html#spots" class="btn btn-dark">Get a spot</a>
+</div></div></header>
+
+<div class="corner-strip"><div class="wrap corner-strip-inner">
+<div class="corner-left"><span class="pill">● The corner</span><span><strong>@yourbrand</strong> holds the corner — 51 €</span></div>
+<div class="corner-right"><a class="link" href="index.html#corner" style="color:#fff">See all →</a><a href="index.html#spots" class="btn btn-small">Claim — 61 €</a></div>
+</div></div>
+
+<main class="wrap" style="padding:28px 20px">
+<p class="muted small">Every bid, ever</p>
+<h1 style="margin-top:0">Leaderboard</h1>
+<p class="muted" id="lbSummary">146 bids from 62 brands. Even if you get outbid, you stay visible here. Demo data — wire to backend later.</p>
+
+<div class="view-tabs" id="lbFilters">
+<button class="tab active" data-sort="biggest">Biggest bids</button>
+<button class="tab" data-sort="bids">Most bids</button>
+<button class="tab" data-sort="newest">Newest first</button>
+</div>
+
+<h2>Top 3</h2>
+<div class="top3" id="lbTop3"></div>
+
+<h2>The rest of the field</h2>
+<div class="box table-wrap"><table class="spots-table"><thead><tr><th>#</th><th>Brand</th><th>Spot</th><th>Bid</th><th>Status</th></tr></thead><tbody id="lbBody"></tbody></table></div>
+
+<p>Want a line of your own? <a href="index.html#spots"><strong>The auction is still open →</strong></a></p>
+
+<h2 id="corner">The corner</h2>
+<div class="box"><ul class="corner-list" id="lbCorner"></ul></div>
+
+<section class="founder" style="margin-top:20px">
+<img src="assets/avatar-placeholder.svg" alt="" width="72" height="72" class="avatar"/>
+<div><p><strong>Run by you.</strong></p><p class="muted micro">Replace with your bio + photo at <code>assets/founder.jpg</code>.</p></div>
+</section>
+</main>
+
+<footer class="footer"><div class="wrap footer-inner">
+<div class="foot-links"><a href="index.html#spots">Live auction</a><a href="leaderboard.html">Leaderboard</a><a href="index.html#how">How it works</a><a href="index.html#corner">The corner</a></div>
+<div class="foot-links"><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></div>
+</div>
+<div class="wrap micro muted">BrandMyAsus is independent. Not affiliated with, endorsed by, or sponsored by ASUSTeK Computer Inc.</div></footer>
+
+<script>
+let cur='EUR'; const R=1.08;
+const fmt=e=>cur==='EUR'?`${e.toLocaleString('en-IE').replace(/,/g,' ')} €`:`$${Math.round(e*R).toLocaleString('en-US')}`;
+const BIDS=[
+["Demo Brand B",2,"Marquee — above logo",1715,3,"live"],["Demo Brand A",1,"Top left banner",1300,7,"live"],
+["Demo Brand C",3,"Top right banner",1010,19,"live"],["Demo Brand I",9,"Bottom center",820,22,"live"],
+["Demo Brand H",8,"Bottom left strip",676,14,"live"],["Demo Brand J",10,"Bottom right strip",550,16,"live"],
+["Demo Brand E",5,"Inner left",410,12,"live"],["Demo Brand F",6,"Inner right",387,13,"live"],
+["Demo Brand D",4,"Middle left",375,17,"live"],["Demo Brand G",7,"Middle right",370,11,"live"],
+["Demo Brand R",19,"Charger + cable",199,1,"live"],["Demo Brand S",20,"Mouse",110,3,"live"],
+["Demo Brand O",15,"Right palm rest 1",76,1,"live"],["Demo Brand L",12,"Left palm rest 2",59,1,"live"],
+["Demo Brand N",14,"Left palm rest 4",59,1,"live"],["Demo Brand P",16,"Right palm rest 2",49,2,"live"],
+["Demo Brand K",11,"Left palm rest 1",39,1,"live"],["Demo Brand M",13,"Left palm rest 3",39,1,"live"],
+["Demo Brand Q",18,"Right palm rest 4",39,1,"live"],
+];
+let sort='biggest';
+function render(){
+ let rows=[...BIDS];
+ if(sort==='biggest')rows.sort((a,b)=>b[3]-a[3]);
+ if(sort==='bids')rows.sort((a,b)=>b[4]-a[4]);
+ if(sort==='newest')rows.reverse();
+ document.getElementById('lbTop3').innerHTML=rows.slice(0,3).map((r,i)=>`<div class="top3-card"><span class="rank">${i+1}</span><img src="assets/avatar-placeholder.svg" alt=""/><div><strong>${r[0]}</strong> · Spot ${r[1]}<br/><strong>${fmt(r[3])}</strong> · ${r[4]} bids</div></div>`).join('');
+ document.getElementById('lbBody').innerHTML=rows.map((r,i)=>`<tr><td>${i+1}</td><td>${r[0]}</td><td>Spot ${r[1]} — ${r[2]}</td><td><strong>${fmt(r[3])}</strong></td><td>${r[5]}</td></tr>`).join('');
+}
+document.querySelectorAll('#lbFilters .tab').forEach(b=>b.onclick=()=>{document.querySelectorAll('#lbFilters .tab').forEach(x=>x.classList.remove('active'));b.classList.add('active');sort=b.dataset.sort;render();});
+document.querySelectorAll('.cur').forEach(b=>b.onclick=()=>{document.querySelectorAll('.cur').forEach(x=>x.classList.remove('active'));b.classList.add('active');cur=b.dataset.cur;render();});
+document.getElementById('lbCorner').innerHTML=["@yourbrand · 51 € · at the top now","demo-shop.com · 41 € · held 4d","demo-app.com · 31 € · held 15h"].map(t=>`<li><img src="assets/avatar-placeholder.svg" width="32" height="32" alt=""/><span>${t}</span></li>`).join('');
+render();
+</script>
+</body></html>

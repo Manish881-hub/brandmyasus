@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>BrandMyAsus — Your brand on my Asus</title>
+<meta name="description" content="BrandMyAsus: I'm funding an Asus laptop by auctioning sticker spots on its lid, interior and gear. Bid for a spot and ride along." />
+<link rel="stylesheet" href="styles.css" />
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="#top" aria-label="BrandMyAsus home">
+      <span class="brand-mark">B</span>
+      <span class="brand-text">BrandMy<em>Asus</em></span>
+    </a>
+    <nav class="main-nav" aria-label="Main">
+      <a href="#spots">Live auction</a>
+      <a href="leaderboard.html">Leaderboard</a>
+      <a href="#how">How it works</a>
+      <a href="#corner">The corner</a>
+    </nav>
+    <div class="header-actions">
+      <div class="currency" role="group" aria-label="Currency">
+        <button class="cur active" data-cur="EUR">€</button>
+        <button class="cur" data-cur="USD">$</button>
+      </div>
+      <a href="#spots" class="btn btn-dark">Get a spot</a>
+      <button class="menu-btn" id="menuBtn" aria-label="Menu">☰</button>
+    </div>
+  </div>
+  <div class="wrap mobile-nav" id="mobileNav">
+    <a href="#spots">Live auction</a>
+    <a href="leaderboard.html">Leaderboard</a>
+    <a href="#how">How it works</a>
+    <a href="#corner">The corner</a>
+    <a href="#specs">The machine</a>
+    <a href="#faq">FAQ</a>
+  </div>
+</header>
+
+<!-- ============ CORNER STRIP ============ -->
+<div class="corner-strip" id="cornerStrip">
+  <div class="wrap corner-strip-inner">
+    <div class="corner-left">
+      <span class="pill">● The corner</span>
+      <img id="cornerAvatar" src="assets/avatar-placeholder.svg" alt="" width="28" height="28" />
+      <span id="cornerText"><strong>@yourbrand</strong> holds the corner — <span data-eur="51">51 €</span></span>
+    </div>
+    <div class="corner-right">
+      <span class="muted">Claim it for <strong data-eur="61">61 €</strong></span>
+      <button class="btn btn-small" id="claimCornerBtn">Claim — 61 €</button>
+      <a class="link" href="#corner">See all →</a>
+    </div>
+  </div>
+</div>
+
+<main id="top">
+<!-- ============ HERO ============ -->
+<section class="hero wrap">
+  <div class="hero-copy">
+    <div class="live-row">
+      <span class="live-dot"></span>
+      <span>Auction · <strong id="openCount">1</strong> spot open from <strong data-eur="59">59 €</strong></span>
+    </div>
+    <h1>Your brand,<br/>on my Asus.</h1>
+    <p class="lede">I’m funding a new Asus laptop by selling its surfaces as sticker spots. Your logo travels to cafés, events, vlogs and build-in-public posts — on the lid, inside, and on the gear.</p>
+    <div class="stats">
+      <div class="stat-big"><span id="raisedEur" data-eur="8282">8 282 €</span> <span class="muted">raised</span></div>
+      <div class="progress"><div class="bar" id="goalBar" style="width:100%"></div></div>
+      <div class="muted small">goal passed · <strong>327%</strong> · <span id="bidCount">146</span> bids so far</div>
+    </div>
+    <div class="hero-ctas">
+      <a href="#spots" class="btn btn-dark btn-large">Get a spot</a>
+      <a href="#how" class="btn btn-ghost btn-large">How it works ›</a>
+    </div>
+    <p class="micro">Tap any numbered spot on the laptop to bid. Lid · Inside · Gear.</p>
+  </div>
+
+  <div class="hero-visual">
+    <div class="view-tabs" role="tablist" aria-label="Laptop views">
+      <button class="tab active" data-view="lid">Lid</button>
+      <button class="tab" data-view="inside">Inside</button>
+      <button class="tab" data-view="gear">Gear</button>
+      <span class="free-badge" id="freeBadge">1 spot still free</span>
+    </div>
+
+    <!-- LAPTOP STAGE: swap images later in assets/ (see README-IMAGES.md) -->
+    <div class="stage" id="stage">
+      <!-- LID VIEW -->
+      <div class="laptop-view active" data-pane="lid">
+        <div class="laptop lid-laptop">
+          <!-- Replace src with your photo: assets/laptop-lid.jpg -->
+          <img class="laptop-photo" src="assets/laptop-lid.svg" alt="Asus laptop lid — replace with your photo" data-slot="lid" />
+          <!-- sticker spots overlay (positions in %) -->
+          <button class="spot s-large" style="--x:50%;--y:18%" data-spot="2" title="Spot 2 — Marquee">2</button>
+          <button class="spot s-large" style="--x:22%;--y:32%" data-spot="1" title="Spot 1 — Top left">1</button>
+          <button class="spot s-large" style="--x:78%;--y:32%" data-spot="3" title="Spot 3 — Top right">3</button>
+          <button class="spot s-small" style="--x:30%;--y:52%" data-spot="4" title="Spot 4">4</button>
+          <button class="spot s-small" style="--x:70%;--y:52%" data-spot="7" title="Spot 7">7</button>
+          <button class="spot s-small taken" style="--x:40%;--y:50%" data-spot="5" title="Spot 5">5</button>
+          <button class="spot s-small taken" style="--x:60%;--y:50%" data-spot="6" title="Spot 6">6</button>
+          <button class="spot s-med" style="--x:50%;--y:74%" data-spot="9" title="Spot 9 — Bottom center">9</button>
+          <button class="spot s-med" style="--x:22%;--y:74%" data-spot="8" title="Spot 8">8</button>
+          <button class="spot s-med" style="--x:78%;--y:74%" data-spot="10" title="Spot 10">10</button>
+          <div class="asus-logo">ASUS</div>
+        </div>
+        <p class="caption">Lid · 10 spots · <span class="muted">add your photo at <code>assets/laptop-lid.jpg</code></span></p>
+      </div>
+
+      <!-- INSIDE VIEW -->
+      <div class="laptop-view" data-pane="inside">
+        <div class="laptop inside-laptop">
+          <img class="laptop-photo" src="assets/laptop-inside.svg" alt="Asus interior (keyboard + palm rests) — replace with your photo" data-slot="inside" />
+          <button class="spot s-small" style="--x:28%;--y:62%" data-spot="11">11</button>
+          <button class="spot s-small" style="--x:38%;--y:62%" data-spot="12">12</button>
+          <button class="spot s-small" style="--x:28%;--y:76%" data-spot="13">13</button>
+          <button class="spot s-small" style="--x:38%;--y:76%" data-spot="14">14</button>
+          <button class="spot s-small" style="--x:62%;--y:62%" data-spot="15">15</button>
+          <button class="spot s-small" style="--x:72%;--y:62%" data-spot="16">16</button>
+          <button class="spot s-small free" style="--x:62%;--y:76%" data-spot="17">17</button>
+          <button class="spot s-small" style="--x:72%;--y:76%" data-spot="18">18</button>
+        </div>
+        <p class="caption">Inside · 8 palm-rest spots · <span class="muted">add your photo at <code>assets/laptop-inside.jpg</code></span></p>
+      </div>
+
+      <!-- GEAR VIEW -->
+      <div class="laptop-view" data-pane="gear">
+        <div class="gear-grid">
+          <div class="gear-card">
+            <img src="assets/charger.svg" alt="Charger placeholder — replace with your photo" data-slot="charger" />
+            <button class="spot s-small" data-spot="19">19</button>
+            <p><strong>Spot 19</strong> · Charger + cable · <span data-eur="199">199 €</span></p>
+          </div>
+          <div class="gear-card">
+            <img src="assets/mouse.svg" alt="Mouse placeholder — replace with your photo" data-slot="mouse" />
+            <button class="spot s-small" data-spot="20">20</button>
+            <p><strong>Spot 20</strong> · Mouse · <span data-eur="110">110 €</span></p>
+          </div>
+        </div>
+        <p class="caption">Accessories · <span class="muted">add photos at <code>assets/charger.jpg</code> + <code>assets/mouse.jpg</code></span></p>
+      </div>
+    </div>
+
+    <div class="thumb-row">
+      <button class="thumb active" data-view="lid">Lid · 10</button>
+      <button class="thumb" data-view="inside">Inside · 8</button>
+      <button class="thumb" data-view="gear">Gear · 2</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RECOGNITION BANNER ============ -->
+<section class="banner">
+  <div class="wrap">
+    <h2>Everyone knows the Asus lid. Put your logo right next to it.</h2>
+    <p class="muted">· <span id="takenCount">19</span> of 20 sticker spots taken</p>
+  </div>
+</section>
+
+<!-- ============ LIVE AUCTION ============ -->
+<section class="wrap" id="spots">
+  <div class="section-head">
+    <h2>The auction, live.</h2>
+    <p class="muted">Every spot shows its current top bid. Prices by size + visibility. <a href="leaderboard.html">Leaderboard →</a></p>
+  </div>
+
+  <div class="top3" id="top3"></div>
+
+  <div class="today box">
+    <strong>Today’s action</strong>
+    <span class="muted" id="todayText">No bid or outbid yet today — be the first to grab a spot.</span>
+  </div>
+
+  <div class="spots-grid" id="spotsGrid"></div>
+
+  <div class="box table-wrap">
+    <table class="spots-table" id="spotsTable">
+      <thead><tr><th>Spot</th><th>Size</th><th>Held by</th><th>Current bid</th><th>Action</th></tr></thead>
+      <tbody></tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ============ DAY BY DAY ============ -->
+<section class="wrap" id="history">
+  <h2>Day by day</h2>
+  <p class="muted">Sample history — wire this to your backend / Supabase later. Totals below are demo data.</p>
+  <div class="days" id="days"></div>
+</section>
+
+<!-- ============ HOW IT WORKS ============ -->
+<section class="wrap" id="how">
+  <h2>How it works</h2>
+  <div class="how-grid">
+    <div class="how-card"><div class="how-n">1</div><h3>Pick your spot + size</h3><p>20 spots across lid, interior and gear — priced by size and visibility. Tap the laptop above to preview placement.</p></div>
+    <div class="how-card"><div class="how-n">2</div><h3>Win the bid</h3><p>Top bid when the timer ends wins. You pay a 20% deposit (min 10 €) to bid — refunded automatically if you’re outbid.</p></div>
+    <div class="how-card"><div class="how-n">3</div><h3>Your sticker rides along</h3><p>I print your logo as a durable die-cut vinyl sticker. Wherever the Asus goes — photos, vlogs, events — your brand is visible, plus a link on this page.</p></div>
+  </div>
+</section>
+
+<!-- ============ SPECS ============ -->
+<section class="wrap" id="specs">
+  <h2>What the money buys.</h2>
+  <p class="muted">Exact specs — edit in <code>app.js → MACHINE</code>.</p>
+  <div class="specs box">
+    <div class="spec-head"><h3 id="machineName">ASUS Zenbook 14”, Grey</h3><div class="price" id="machinePrice" data-eur="1529">1 529 €</div></div>
+    <dl class="spec-list" id="specList"></dl>
+    <p class="micro">Priced in euros where I’m buying it. Anything past the goal funds the trips the laptop goes on.</p>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="wrap" id="faq">
+  <h2>Questions &amp; Answers</h2>
+  <div class="faq" id="faqList"></div>
+</section>
+
+<!-- ============ CORNER ============ -->
+<section class="wrap" id="corner">
+  <h2>The corner</h2>
+  <p class="muted">One slot at the very top of this page, held by whoever paid most for it. Outbid moves you down — it never removes you.</p>
+  <div class="box">
+    <ul class="corner-list" id="cornerList"></ul>
+    <div class="corner-cta">
+      <span>Take the corner — <strong data-eur="61">61 €</strong> · one-time, no refund.</span>
+      <button class="btn btn-dark" id="claimCornerBtn2">Claim the corner</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOUNDER ============ -->
+<section class="wrap founder">
+  <img src="assets/avatar-placeholder.svg" alt="Founder photo placeholder" width="96" height="96" class="avatar" />
+  <div>
+    <p><strong>Hey, I’m <span id="founderName">Your Name</span> 👋</strong></p>
+    <p class="muted">Indie maker funding a new Asus by renting its surfaces. Building in public — SaaS, apps, maybe some game dev. Questions or want a spot? <a href="mailto:hello@brandmyasus.example">email me</a>. Edit this bio in <code>app.js → FOUNDER</code> and drop your photo at <code>assets/founder.jpg</code>.</p>
+  </div>
+</section>
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="wrap footer-inner">
+    <div class="foot-links">
+      <a href="#spots">Live auction</a>
+      <a href="leaderboard.html">Leaderboard</a>
+      <a href="#how">How it works</a>
+      <a href="#corner">The corner</a>
+      <a href="#specs">The machine</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <div class="foot-links">
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+    </div>
+  </div>
+  <div class="wrap micro muted">BrandMyAsus is an independent project. Not affiliated with, endorsed by, or sponsored by ASUSTeK Computer Inc. ASUS, Zenbook, ROG, Vivobook are trademarks of their respective owners. All logos shown belong to their bidders.</div>
+</footer>
+
+<!-- ============ BID MODAL ============ -->
+<div class="modal-backdrop" id="bidModal" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="bidTitle">
+    <button class="modal-x" id="bidClose" aria-label="Close">✕</button>
+    <h3 id="bidTitle">Bid for spot <span id="bidSpotN">17</span></h3>
+    <p class="muted small" id="bidSpotMeta">Right palm rest · S 4×4 cm · from 59 €</p>
+    <label>Brand / handle<input id="bidBrand" placeholder="e.g. @yourbrand" /></label>
+    <label>Website URL<input id="bidUrl" placeholder="https://…" inputmode="url" /></label>
+    <label>Your bid (€)<input id="bidAmount" type="number" min="0" step="1" /></label>
+    <p class="micro">Deposit due now: <strong id="bidDeposit">12 €</strong> (20%, min 10 €). Refunded if outbid. Outbids must beat current by ≥ 10 €.</p>
+    <button class="btn btn-dark btn-large" id="bidSubmit">Place bid</button>
+    <p class="micro muted">Demo frontend only — no real payment. Connect Stripe / backend later.</p>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
