@@ -1,0 +1,13 @@
+# Next.js (inside nextjs/)
+nextjs/node_modules/
+nextjs/.next/
+nextjs/out/
+nextjs/.vercel/
+nextjs/tsconfig.tsbuildinfo
+
+# misc
+*.log
+.DS_Store
+.env
+.env.local
+.env.*.local
