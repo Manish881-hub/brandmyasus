@@ -14,7 +14,7 @@ export interface Spot {
   heldBy: string | null;
 }
 
-export const FOUNDER = { name: 'Your Name' };
+export const FOUNDER = { name: 'Manish Bhaktisagar' };
 
 export const MACHINE = {
   name: 'ASUS Zenbook 14", Grey',
